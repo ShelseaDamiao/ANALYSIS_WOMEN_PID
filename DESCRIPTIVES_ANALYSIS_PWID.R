@@ -6,6 +6,7 @@
 
 # RESPOSITORIO PRIVADO DO GITHUB
 
+#<https://github.com/ShelseaDamiao/ANALYSIS_WOMEN_PID>
 
 # PACOTES USADOS
  if(!require(dplyr)) install.packages("dplyr")
@@ -70,24 +71,13 @@ table(BASE_WWID$MSEX2_A)
                                   ACT_TECTO = case_when(DEACT == "Nao" ~ "2_Nao",
                                                         DEACT == "Sim" ~ "1_Sim",
                                                         .default = NA),
-                                  IDADE_SEXO = case_when(LIMF1_AGE_M == "Anos"  & LIMF1_AGE_MA < 18 ~ "1_<18",
-                                                         LIMF1_AGE_M == "Anos" & LIMF1_AGE_MA >= 18 ~ "2_>=18"),
-                                  
-                                  
-                                  
-                                  
-                                  
-                                  
-                                  
-                                  
-                                  
-                                  )
-                                  
-                                  
-                                  
-                                  
-   
- )
+                                  IDADE_SEXO = case_when(LIMF1_AGE_M == "Anos"  & as.numeric(LIMF1_AGE_MA) < 18 ~ "1_<18",
+                                                         LIMF1_AGE_M == "Anos" & as.numeric(LIMF1_AGE_MA) >= 18 ~ "2_>=18"),
+                                  NR_PARCEIROS_SEX = case_when(as.numeric(MSEX2_A) = 0 ~ "1_0",
+                                                               as.numeric(MSEX2_A) = 1 ~ "2_1",
+                                                               MSEX2_A == "2+" ~ "3_2+",
+                                                               .default = NA
+                ))
    
  
  
