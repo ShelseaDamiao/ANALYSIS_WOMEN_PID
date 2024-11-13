@@ -27,12 +27,12 @@
  
  vars <- c("DEIDENT", "SCREEN1", "DESEXNOW", "DEBORN", "IDENT_DEBORN_OTHER", "DEMEDU1",
            "DEEDHIGH", "IDENT_DEEDHIGH_OTHER", "DERELIG", "IDENT_DERELIG_OTHER", "DEREG",
-           "DELIVESX", "LIMF1_AGE_M", "LIMF1_AGE_MA", "LIMMSIX"
+           "DELIVESX", "LIMF1_AGE_M", "LIMF1_AGE_MA", ""
            )
  
  
  # CATEGORIZAR A BASE DE DADOS
-
+table(BASE_WWID$MSEX2_A)
  
  BASE_WWID <- BASE_WWID |> mutate(   PROVINCIA = case_when(DEREG %in% c("Maputo_Provincia", "Maputo_Cidade") ~ "1_Maputo",
                                                            DEREG == "Sofala" ~ "2_Beira",
@@ -72,6 +72,7 @@
                                                         .default = NA),
                                   IDADE_SEXO = case_when(LIMF1_AGE_M == "Anos"  & LIMF1_AGE_MA < 18 ~ "1_<18",
                                                          LIMF1_AGE_M == "Anos" & LIMF1_AGE_MA >= 18 ~ "2_>=18"),
+                                  
                                   
                                   
                                   
